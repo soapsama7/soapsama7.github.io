@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-ssr
+需求文档/
+*.local
+*.log
+.DS_Store
+.vite
