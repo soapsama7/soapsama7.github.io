@@ -606,6 +606,6 @@ a {
 
   .turn-forward-leave-active .page__shade,
   .turn-back-leave-active .page__shade {
-    animation: none;
+    display: none;
   }
 }

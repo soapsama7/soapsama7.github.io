@@ -1,6 +1,25 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { onMounted, onUnmounted } from 'vue'
+import { RouterView, useRouter } from 'vue-router'
 import { direction } from './nav'
+
+const router = useRouter()
+
+// 线性的页序，用于键盘翻页
+const ORDER = ['/', '/contents', '/articles', '/colophon']
+
+function onKeydown (e) {
+  if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+  const i = ORDER.indexOf(router.currentRoute.value.path)
+  if (e.key === 'ArrowRight') {
+    if (i >= 0 && i < ORDER.length - 1) router.push(ORDER[i + 1])
+  } else if (e.key === 'ArrowLeft') {
+    if (i > 0) router.back()
+  }
+}
+
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 </script>
 
 <template>
